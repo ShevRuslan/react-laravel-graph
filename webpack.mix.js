@@ -11,8 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.react('resources/js/index.js', 'public/js')
+   .sass('resources/sass/app.sass', 'public/css')
+   .sass('resources/sass/welcome.sass', 'public/css')
 mix.browserSync({
    proxy: 'http://127.0.0.1:8000'
 });
