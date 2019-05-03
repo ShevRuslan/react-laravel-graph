@@ -96,6 +96,7 @@ class Header extends Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
+    burgerAnchorEL: null,
   };
 
   handleProfileMenuOpen = event => {
@@ -115,13 +116,36 @@ class Header extends Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleBurgerMenuOpen = event => {
+    this.setState({burgerAnchorEL: event.currentTarget })
+  }
+  handleBurgerMenuClose = () => {
+    this.setState({burgerAnchorEL: null })
+  }
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, mobileMoreAnchorEl, burgerAnchorEL } = this.state;
     const { classes } = this.props;
+    const isBurgerMenuOpen = Boolean(burgerAnchorEL);
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const renderMenu = (
+
+    const renderBurgerMenu = (
+      <Menu
+        anchorEl={burgerAnchorEL}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isBurgerMenuOpen}
+        onClose={this.handleBurgerMenuClose}
+      >
+        <MenuItem onClick={this.handleMenuClose}>О сайте</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Настройки</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Авторизироваться</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Зарегистрироваться</MenuItem>
+      </Menu>
+    );
+
+    const renderProfileMenu = (
       <Menu
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -171,7 +195,7 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+            <IconButton className={classes.menuButton} color="inherit" onClick={this.handleBurgerMenuOpen} aria-label="Open drawer">
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -218,8 +242,9 @@ class Header extends Component {
             </div>
           </Toolbar>
         </AppBar>
-        {renderMenu}
+        {renderProfileMenu}
         {renderMobileMenu}
+        {renderBurgerMenu}
       </div>
     );
   }

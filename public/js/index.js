@@ -84759,7 +84759,8 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       anchorEl: null,
-      mobileMoreAnchorEl: null
+      mobileMoreAnchorEl: null,
+      burgerAnchorEL: null
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleProfileMenuOpen", function (event) {
@@ -84788,6 +84789,18 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handleBurgerMenuOpen", function (event) {
+      _this.setState({
+        burgerAnchorEL: event.currentTarget
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleBurgerMenuClose", function () {
+      _this.setState({
+        burgerAnchorEL: null
+      });
+    });
+
     return _this;
   }
 
@@ -84796,11 +84809,34 @@ function (_Component) {
     value: function render() {
       var _this$state = this.state,
           anchorEl = _this$state.anchorEl,
-          mobileMoreAnchorEl = _this$state.mobileMoreAnchorEl;
+          mobileMoreAnchorEl = _this$state.mobileMoreAnchorEl,
+          burgerAnchorEL = _this$state.burgerAnchorEL;
       var classes = this.props.classes;
+      var isBurgerMenuOpen = Boolean(burgerAnchorEL);
       var isMenuOpen = Boolean(anchorEl);
       var isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-      var renderMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
+      var renderBurgerMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
+        anchorEl: burgerAnchorEL,
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'right'
+        },
+        transformOrigin: {
+          vertical: 'top',
+          horizontal: 'right'
+        },
+        open: isBurgerMenuOpen,
+        onClose: this.handleBurgerMenuClose
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+        onClick: this.handleMenuClose
+      }, "\u041E \u0441\u0430\u0439\u0442\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+        onClick: this.handleMenuClose
+      }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+        onClick: this.handleMenuClose
+      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+        onClick: this.handleMenuClose
+      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"));
+      var renderProfileMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
         anchorEl: anchorEl,
         anchorOrigin: {
           vertical: 'top',
@@ -84855,6 +84891,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
         className: classes.menuButton,
         color: "inherit",
+        onClick: this.handleBurgerMenuOpen,
         "aria-label": "Open drawer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_12___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5___default.a, {
         className: classes.title,
@@ -84900,7 +84937,7 @@ function (_Component) {
         "aria-haspopup": "true",
         onClick: this.handleMobileMenuOpen,
         color: "inherit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_17___default.a, null))))), renderMenu, renderMobileMenu);
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_17___default.a, null))))), renderProfileMenu, renderMobileMenu, renderBurgerMenu);
     }
   }]);
 
