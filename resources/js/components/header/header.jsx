@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
+import Modal from '@material-ui/core/Modal';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -16,7 +17,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import SimpleModal from '../modal'
 const styles = theme => ({
   root: {
     width: '100%',
@@ -97,6 +98,8 @@ class Header extends Component {
     anchorEl: null,
     mobileMoreAnchorEl: null,
     burgerAnchorEL: null,
+    modalAuthOpen: false,
+    modalRegOpen: false,
   };
 
   handleProfileMenuOpen = event => {
@@ -122,13 +125,19 @@ class Header extends Component {
   handleBurgerMenuClose = () => {
     this.setState({burgerAnchorEL: null })
   }
+  handleAuthModalOpen = () => {
+    this.setState({ modalAuthOpen: true });
+  }
+  handleAuthModalClose = () => {
+    this.setState({ modalAuthOpen: false });
+  }
   render() {
-    const { anchorEl, mobileMoreAnchorEl, burgerAnchorEL } = this.state;
+    const { anchorEl, mobileMoreAnchorEl, burgerAnchorEL, modalAuthOpen, modalRegOpen } = this.state;
     const { classes } = this.props;
     const isBurgerMenuOpen = Boolean(burgerAnchorEL);
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+    console.log(modalAuthOpen);
 
     const renderBurgerMenu = (
       <Menu
@@ -138,10 +147,10 @@ class Header extends Component {
         open={isBurgerMenuOpen}
         onClose={this.handleBurgerMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>О сайте</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Настройки</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Авторизироваться</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Зарегистрироваться</MenuItem>
+        <MenuItem onClick={this.handleBurgerMenuClose}>О сайте</MenuItem>
+        <MenuItem onClick={this.handleBurgerMenuClose}>Настройки</MenuItem>
+        <MenuItem onClick={() => { this.handleAuthModalOpen(); this.handleBurgerMenuClose();}}>Авторизироваться</MenuItem>
+        <MenuItem onClick={this.handleBurgerMenuClose}>Зарегистрироваться</MenuItem>
       </Menu>
     );
 
@@ -242,6 +251,12 @@ class Header extends Component {
             </div>
           </Toolbar>
         </AppBar>
+        <SimpleModal
+          isOpen={modalAuthOpen}
+          onClose={this.handleAuthModalClose}
+        >
+          1
+        </SimpleModal>
         {renderProfileMenu}
         {renderMobileMenu}
         {renderBurgerMenu}
