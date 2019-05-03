@@ -27,6 +27,7 @@ const styles = theme => ({
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
+    outline: 'none !important',
   },
   title: {
     display: 'none',
@@ -85,6 +86,9 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  icon: {
+    outline: 'none !important',
+  }
 });
 
 class Header extends Component {
@@ -125,8 +129,8 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Профиль</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Мой аккаунт</MenuItem>
       </Menu>
     );
 
@@ -144,7 +148,7 @@ class Header extends Component {
               <MailIcon />
             </Badge>
           </IconButton>
-          <p>Messages</p>
+          <p>Сообщения</p>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
@@ -152,13 +156,13 @@ class Header extends Component {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <p>Notifications</p>
+          <p>Оповещания</p>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <IconButton color="inherit">
             <AccountCircle />
           </IconButton>
-          <p>Profile</p>
+          <p>Профиль</p>
         </MenuItem>
       </Menu>
     );
@@ -171,14 +175,14 @@ class Header extends Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Material-UI
+              Графики
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder="Поиск..."
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -187,17 +191,18 @@ class Header extends Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
+              <IconButton className={classes.icon} color="inherit">
+                <Badge badgeContent={1} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
+              <IconButton className={classes.icon} color="inherit">
+                <Badge badgeContent={1} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
               <IconButton
+                className={classes.icon}
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}
@@ -207,7 +212,7 @@ class Header extends Component {
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+              <IconButton className={classes.icon} aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
                 <MoreIcon />
               </IconButton>
             </div>

@@ -84678,7 +84678,8 @@ var styles = function styles(theme) {
     },
     menuButton: {
       marginLeft: -12,
-      marginRight: 20
+      marginRight: 20,
+      outline: 'none !important'
     },
     title: _defineProperty({
       display: 'none'
@@ -84731,7 +84732,10 @@ var styles = function styles(theme) {
       display: 'flex'
     }, theme.breakpoints.up('md'), {
       display: 'none'
-    })
+    }),
+    icon: {
+      outline: 'none !important'
+    }
   };
 };
 
@@ -84810,9 +84814,9 @@ function (_Component) {
         onClose: this.handleMenuClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
         onClick: this.handleMenuClose
-      }, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+      }, "\u041F\u0440\u043E\u0444\u0438\u043B\u044C"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
         onClick: this.handleMenuClose
-      }, "My account"));
+      }, "\u041C\u043E\u0439 \u0430\u043A\u043A\u0430\u0443\u043D\u0442"));
       var renderMobileMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
         anchorEl: mobileMoreAnchorEl,
         anchorOrigin: {
@@ -84832,18 +84836,18 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Badge__WEBPACK_IMPORTED_MODULE_7___default.a, {
         badgeContent: 4,
         color: "secondary"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Messages")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
         onClick: this.handleMobileMenuClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
         color: "inherit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Badge__WEBPACK_IMPORTED_MODULE_7___default.a, {
         badgeContent: 11,
         color: "secondary"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_16___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Notifications")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_16___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u043F\u043E\u0432\u0435\u0449\u0430\u043D\u0438\u044F")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
         onClick: this.handleProfileMenuOpen
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
         color: "inherit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_14___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_14___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041F\u0440\u043E\u0444\u0438\u043B\u044C")));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.root
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -84857,12 +84861,12 @@ function (_Component) {
         variant: "h6",
         color: "inherit",
         noWrap: true
-      }, "Material-UI"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u0413\u0440\u0430\u0444\u0438\u043A\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.search
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.searchIcon
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_13___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputBase__WEBPACK_IMPORTED_MODULE_6___default.a, {
-        placeholder: "Search\u2026",
+        placeholder: "\u041F\u043E\u0438\u0441\u043A...",
         classes: {
           root: classes.inputRoot,
           input: classes.inputInput
@@ -84872,16 +84876,19 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.sectionDesktop
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        className: classes.icon,
         color: "inherit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Badge__WEBPACK_IMPORTED_MODULE_7___default.a, {
-        badgeContent: 4,
+        badgeContent: 1,
         color: "secondary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        className: classes.icon,
         color: "inherit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Badge__WEBPACK_IMPORTED_MODULE_7___default.a, {
-        badgeContent: 17,
+        badgeContent: 1,
         color: "secondary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_16___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        className: classes.icon,
         "aria-owns": isMenuOpen ? 'material-appbar' : undefined,
         "aria-haspopup": "true",
         onClick: this.handleProfileMenuOpen,
@@ -84889,6 +84896,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_14___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.sectionMobile
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        className: classes.icon,
         "aria-haspopup": "true",
         onClick: this.handleMobileMenuOpen,
         color: "inherit"
