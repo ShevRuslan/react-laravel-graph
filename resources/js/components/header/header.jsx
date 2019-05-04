@@ -15,8 +15,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import SimpleModal from '../modal'
-import AutorizationForm from './auth'
+import SimpleModal from '../modal';
+import AutorizationForm from './auth';
+import RegistrationForm from './reg'
 import styles from './style';
 class Header extends Component {
 
@@ -57,6 +58,12 @@ class Header extends Component {
   handleAuthModalClose = () => {
     this.setState({ modalAuthOpen: false });
   }
+  handleRegModalOpen = () => {
+    this.setState({ modalRegOpen: true });
+  }
+  handleRegModalClose = () => {
+    this.setState({ modalRegOpen: false });
+  }
   render() {
     const { anchorEl, mobileMoreAnchorEl, burgerAnchorEL, modalAuthOpen, modalRegOpen } = this.state;
     const { classes } = this.props;
@@ -74,7 +81,7 @@ class Header extends Component {
         <MenuItem onClick={this.handleBurgerMenuClose}>О сайте</MenuItem>
         <MenuItem onClick={this.handleBurgerMenuClose}>Настройки</MenuItem>
         <MenuItem onClick={() => { this.handleAuthModalOpen(); this.handleBurgerMenuClose();}}>Авторизироваться</MenuItem>
-        <MenuItem onClick={this.handleBurgerMenuClose}>Зарегистрироваться</MenuItem>
+        <MenuItem onClick={() => { this.handleRegModalOpen(); this.handleBurgerMenuClose();}}>Зарегистрироваться</MenuItem>
       </Menu>
     );
 
@@ -182,7 +189,12 @@ class Header extends Component {
         > 
           <AutorizationForm></AutorizationForm>
         </SimpleModal>
-
+        <SimpleModal
+          isOpen={modalRegOpen}
+          onClose={this.handleRegModalClose}
+        > 
+          <RegistrationForm></RegistrationForm>
+        </SimpleModal>        
         {renderProfileMenu}
         {renderMobileMenu}
         {renderBurgerMenu}
