@@ -16,6 +16,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SimpleModal from '../modal'
+import AutorizationForm from './auth'
 import styles from './style';
 class Header extends Component {
 
@@ -62,8 +63,6 @@ class Header extends Component {
     const isBurgerMenuOpen = Boolean(burgerAnchorEL);
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    console.log(modalAuthOpen);
-
     const renderBurgerMenu = (
       <Menu
         anchorEl={burgerAnchorEL}
@@ -176,12 +175,14 @@ class Header extends Component {
             </div>
           </Toolbar>
         </AppBar>
+
         <SimpleModal
           isOpen={modalAuthOpen}
           onClose={this.handleAuthModalClose}
-        >
-          1
+        > 
+          <AutorizationForm></AutorizationForm>
         </SimpleModal>
+
         {renderProfileMenu}
         {renderMobileMenu}
         {renderBurgerMenu}

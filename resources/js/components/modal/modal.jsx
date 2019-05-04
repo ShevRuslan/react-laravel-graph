@@ -11,10 +11,11 @@ const styles = theme => ({
     left: '50%',
     top: '50%',
     transform: 'translate(-50%, -50%)',
-    width: theme.spacing.unit * 50,
+    width: theme.spacing.unit * 60,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
+    paddingRight: '42px',
     outline: 'none',
   },
 });
