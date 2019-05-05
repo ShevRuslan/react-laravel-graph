@@ -28,9 +28,18 @@ class RegistrationForm extends Component {
     };
     submitForm = (e) => {
         e.preventDefault();
-        fetch('/api/users')
-            .then(response => { return response.json() })
-            .then(users => {console.log(users)});
+        let formData = new FormData();
+        formData.append('email', this.state.email);
+        formData.append('name', this.state.login);
+        formData.append('password', this.state.password);
+
+        fetch("api/user/register", {
+            body: formData,
+            method: "POST",
+        })
+            .then(response => console.log(response))
+            .then(json => console.log(json))
+            .catch (error => console.log(error));
     }
     render() {
         const { classes } = this.props;
