@@ -89796,6 +89796,15 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "submitForm", function (e) {
+      e.preventDefault();
+      fetch('/api/users').then(function (response) {
+        return response.json();
+      }).then(function (users) {
+        console.log(users);
+      });
+    });
+
     return _this;
   }
 
@@ -89810,9 +89819,7 @@ function (_Component) {
           showPassword = _this$state.showPassword,
           email = _this$state.email;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: function onSubmit() {
-          console.log(1);
-        }
+        onSubmit: this.submitForm
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1___default.a, {
         align: "center",
         variant: "h6",
