@@ -11,7 +11,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import styles from './style';
 import GhapiService from '../../../services/api-service';
-
+import {  connect  } from 'react-redux';
+import {  accountAuth, accountAuthError  } from '../../../actions/index'
 class AutorizationForm extends Component {
     ghapiService = new GhapiService();
     state = {
@@ -19,9 +20,10 @@ class AutorizationForm extends Component {
         password: '',
         repeatPassword: '',
         showPassword: false,
-        isAuth: false,
-        authError: '',
     };
+    componentDidUpdate = () => {
+        console.log(this.props)
+    }
     handleChange = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
@@ -38,18 +40,15 @@ class AutorizationForm extends Component {
 
         const response = await this.ghapiService.authUser(formData);
         if (response.data.auth_token !== undefined) {
-            this.setState(state => ({ isAuth: true, authError: '' }));
+            this.props.accountAuth(response.data.auth_token)
             localStorage.setItem('auth_token', response.data.auth_token);
         } else {
-            this.setState(state => ({
-                isAuth: false,
-                authError: 'Ошибка в авторизации',
-           }))
+            this.props.accountAuthError('Ошибка в авторизации');
         }
     }
     render() {
-        const { classes } = this.props;
-        const { login, password, repeatPassword, showPassword, isAuth, authError } = this.state; 
+        const { classes, auth_error, isAuth } = this.props;
+        const { login, password, repeatPassword, showPassword} = this.state; 
         return (
             <form onSubmit={this.submit}>
                 <Typography align="center" variant="h6" color="inherit" noWrap>Авторизация</Typography>
@@ -95,7 +94,7 @@ class AutorizationForm extends Component {
                 <Button type="submit" variant="outlined" color="primary" className={classNames(classes.button, classes.textField)}>
                     Авторизироваться
                 </Button>
-                <div style={{color: 'red', textAlign: 'center', width: '100%',fontFamily: "Roboto"}}>{authError}</div>
+                <div style={{color: 'red', textAlign: 'center', width: '100%',fontFamily: "Roboto"}}>{ auth_error }</div>
             </form>
         );
     }
@@ -104,5 +103,11 @@ class AutorizationForm extends Component {
 AutorizationForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-  
-export default withStyles(styles)(AutorizationForm);
+const mapStateToProps  = ({isAuth, auth_token, auth_error}) => {
+    return {isAuth, auth_token, auth_error}
+}
+const mapDispatchToProps  = {
+    accountAuth,
+    accountAuthError
+}  
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AutorizationForm));

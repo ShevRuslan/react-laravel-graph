@@ -1,9 +1,3 @@
-import account from './account';
-
-const reducer = (state, action) => {
-    return {
-        account: account(state, action),
-    };
-};
+import reducer from './account';
 
 export default reducer;

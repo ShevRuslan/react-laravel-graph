@@ -91760,6 +91760,32 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/actions/index.js":
+/*!***************************************!*\
+  !*** ./resources/js/actions/index.js ***!
+  \***************************************/
+/*! exports provided: accountAuth, accountAuthError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accountAuth", function() { return accountAuth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accountAuthError", function() { return accountAuthError; });
+var accountAuth = function accountAuth(auth_token) {
+  return {
+    type: 'FETCH_ACCOUNT_AUTH_SUCCESS',
+    auth_token: auth_token
+  };
+};
+var accountAuthError = function accountAuthError(error) {
+  return {
+    type: 'FETCH_ACCOUNT_AUTH_ERROR',
+    error: error
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -91935,6 +91961,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./style */ "./resources/js/components/header/auth/style.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../services/api-service */ "./resources/js/services/api-service.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../actions/index */ "./resources/js/actions/index.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -91975,6 +92003,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var AutorizationForm =
 /*#__PURE__*/
 function (_Component) {
@@ -91999,9 +92029,11 @@ function (_Component) {
       login: '',
       password: '',
       repeatPassword: '',
-      showPassword: false,
-      isAuth: false,
-      authError: ''
+      showPassword: false
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "componentDidUpdate", function () {
+      console.log(_this.props);
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (prop) {
@@ -92040,21 +92072,11 @@ function (_Component) {
                 response = _context.sent;
 
                 if (response.data.auth_token !== undefined) {
-                  _this.setState(function (state) {
-                    return {
-                      isAuth: true,
-                      authError: ''
-                    };
-                  });
+                  _this.props.accountAuth(response.data.auth_token);
 
                   localStorage.setItem('auth_token', response.data.auth_token);
                 } else {
-                  _this.setState(function (state) {
-                    return {
-                      isAuth: false,
-                      authError: 'Ошибка в авторизации'
-                    };
-                  });
+                  _this.props.accountAuthError('Ошибка в авторизации');
                 }
 
               case 8:
@@ -92076,14 +92098,15 @@ function (_Component) {
   _createClass(AutorizationForm, [{
     key: "render",
     value: function render() {
-      var classes = this.props.classes;
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          auth_error = _this$props.auth_error,
+          isAuth = _this$props.isAuth;
       var _this$state = this.state,
           login = _this$state.login,
           password = _this$state.password,
           repeatPassword = _this$state.repeatPassword,
-          showPassword = _this$state.showPassword,
-          isAuth = _this$state.isAuth,
-          authError = _this$state.authError;
+          showPassword = _this$state.showPassword;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.submit
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -92134,7 +92157,7 @@ function (_Component) {
           width: '100%',
           fontFamily: "Roboto"
         }
-      }, authError));
+      }, auth_error));
     }
   }]);
 
@@ -92144,7 +92167,23 @@ function (_Component) {
 AutorizationForm.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object.isRequired
 };
-/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["withStyles"])(_style__WEBPACK_IMPORTED_MODULE_12__["default"])(AutorizationForm));
+
+var mapStateToProps = function mapStateToProps(_ref2) {
+  var isAuth = _ref2.isAuth,
+      auth_token = _ref2.auth_token,
+      auth_error = _ref2.auth_error;
+  return {
+    isAuth: isAuth,
+    auth_token: auth_token,
+    auth_error: auth_error
+  };
+};
+
+var mapDispatchToProps = {
+  accountAuth: _actions_index__WEBPACK_IMPORTED_MODULE_15__["accountAuth"],
+  accountAuthError: _actions_index__WEBPACK_IMPORTED_MODULE_15__["accountAuthError"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_14__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["withStyles"])(_style__WEBPACK_IMPORTED_MODULE_12__["default"])(AutorizationForm)));
 
 /***/ }),
 
@@ -93150,11 +93189,38 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var account = function account(state, action) {
-  if (state === undefined) {}
+var reducer = function reducer(state, action) {
+  if (state === undefined) {
+    return {
+      isAuth: false,
+      auth_token: '',
+      auth_error: ''
+    };
+  }
+
+  console.log(action.type);
+
+  switch (action.type) {
+    case 'FETCH_ACCOUNT_AUTH_SUCCESS':
+      return {
+        isAuth: true,
+        auth_token: action.auth_token,
+        auth_error: ''
+      };
+
+    case 'FETCH_ACCOUNT_AUTH_ERROR':
+      return {
+        isAuth: false,
+        auth_token: '',
+        auth_error: action.error
+      };
+
+    default:
+      return state;
+  }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (account);
+/* harmony default export */ __webpack_exports__["default"] = (reducer);
 
 /***/ }),
 
@@ -93169,14 +93235,7 @@ var account = function account(state, action) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./account */ "./resources/js/reducers/account.js");
 
-
-var reducer = function reducer(state, action) {
-  return {
-    account: Object(_account__WEBPACK_IMPORTED_MODULE_0__["default"])(state, action)
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (reducer);
+/* harmony default export */ __webpack_exports__["default"] = (_account__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
