@@ -27,6 +27,7 @@ class Header extends Component {
     burgerAnchorEL: null,
     modalAuthOpen: false,
     modalRegOpen: false,
+    
   };
 
   handleProfileMenuOpen = event => {
@@ -64,6 +65,14 @@ class Header extends Component {
   handleRegModalClose = () => {
     this.setState({ modalRegOpen: false });
   }
+  logout = () => {
+    localStorage.removeItem('auth_token');
+    this.setState((state) => {
+      return {
+        logout: true
+      }
+    });
+  }
   render() {
     const { anchorEl, mobileMoreAnchorEl, burgerAnchorEL, modalAuthOpen, modalRegOpen } = this.state;
     const { classes } = this.props;
@@ -95,6 +104,7 @@ class Header extends Component {
       >
         <MenuItem onClick={this.handleMenuClose}>Профиль</MenuItem>
         <MenuItem onClick={this.handleMenuClose}>Мой аккаунт</MenuItem>
+        <MenuItem onClick={() => { this.handleMenuClose; this.logout();}}>Выйти</MenuItem>
       </Menu>
     );
 
@@ -189,6 +199,7 @@ class Header extends Component {
         > 
           <AutorizationForm></AutorizationForm>
         </SimpleModal>
+        
         <SimpleModal
           isOpen={modalRegOpen}
           onClose={this.handleRegModalClose}

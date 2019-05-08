@@ -19,6 +19,8 @@ class AutorizationForm extends Component {
         password: '',
         repeatPassword: '',
         showPassword: false,
+        isAuth: false,
+        authError: '',
     };
     handleChange = prop => event => {
         this.setState({ [prop]: event.target.value });
@@ -29,19 +31,25 @@ class AutorizationForm extends Component {
     };
     submit = async (e) => {
         e.preventDefault();
-        
+
         let formData = new FormData();
         formData.append('email', this.state.login);
         formData.append('password', this.state.password);
 
         const response = await this.ghapiService.authUser(formData);
         if (response.data.auth_token !== undefined) {
+            this.setState(state => ({ isAuth: true, authError: '' }));
             localStorage.setItem('auth_token', response.data.auth_token);
+        } else {
+            this.setState(state => ({
+                isAuth: false,
+                authError: 'Ошибка в авторизации',
+           }))
         }
     }
     render() {
         const { classes } = this.props;
-        const { login, password, repeatPassword, showPassword } = this.state;
+        const { login, password, repeatPassword, showPassword, isAuth, authError } = this.state; 
         return (
             <form onSubmit={this.submit}>
                 <Typography align="center" variant="h6" color="inherit" noWrap>Авторизация</Typography>
@@ -87,6 +95,7 @@ class AutorizationForm extends Component {
                 <Button type="submit" variant="outlined" color="primary" className={classNames(classes.button, classes.textField)}>
                     Авторизироваться
                 </Button>
+                <div style={{color: 'red', textAlign: 'center', width: '100%',fontFamily: "Roboto"}}>{authError}</div>
             </form>
         );
     }
