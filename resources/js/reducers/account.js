@@ -2,7 +2,6 @@ const reducer = (state, action) => {
     if (state === undefined) {
         return {
             isAuth: false,
-            auth_token: '',
             auth_error: '',
         }
     }
@@ -11,14 +10,17 @@ const reducer = (state, action) => {
         case 'FETCH_ACCOUNT_AUTH_SUCCESS':
             return {
                 isAuth: true,
-                auth_token: action.auth_token,
                 auth_error: '',
             }
         case 'FETCH_ACCOUNT_AUTH_ERROR':
             return {
                 isAuth: false,
-                auth_token: '',
                 auth_error: action.error,
+            }
+        case 'FETCH_ACCOUNT_AUTH_LOGOUT':
+            return {
+                isAuth: false,
+                auth_error: '',
             }
         default:
             return state;

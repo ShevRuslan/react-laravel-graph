@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,6 +19,9 @@ import SimpleModal from '../modal';
 import AutorizationForm from './auth';
 import RegistrationForm from './reg'
 import styles from './style';
+import {  connect  } from 'react-redux';
+import { accountAuth, accountAuthLogout } from '../../actions/index';
+
 class Header extends Component {
 
   state = {
@@ -65,20 +68,51 @@ class Header extends Component {
   handleRegModalClose = () => {
     this.setState({ modalRegOpen: false });
   }
+  componentDidMount = () => {
+    const auth_token = localStorage.getItem('auth_token');
+    if(auth_token !== null) {this.props.accountAuth()}
+  } 
   logout = () => {
     localStorage.removeItem('auth_token');
-    this.setState((state) => {
-      return {
-        logout: true
-      }
-    });
+    this.props.accountAuthLogout();
   }
   render() {
     const { anchorEl, mobileMoreAnchorEl, burgerAnchorEL, modalAuthOpen, modalRegOpen } = this.state;
-    const { classes } = this.props;
+    const { classes, isAuth } = this.props;
     const isBurgerMenuOpen = Boolean(burgerAnchorEL);
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    let isLogged, isProfileMobile, isProfileDesktop = null;
+    console.log(isAuth);
+    if (!isAuth) {
+      isLogged = (
+        <div>
+          <MenuItem onClick={() => { this.handleAuthModalOpen(); this.handleBurgerMenuClose(); }}>Авторизироваться</MenuItem>
+          <MenuItem onClick={() => { this.handleRegModalOpen(); this.handleBurgerMenuClose(); }}>Зарегистрироваться</MenuItem>  
+        </div>
+      );
+    }
+    else {
+      isProfileMobile = (
+        <MenuItem onClick={this.handleProfileMenuOpen}>
+          <IconButton color="inherit">
+            <AccountCircle />
+          </IconButton>
+          <p>Профиль</p>
+        </MenuItem>
+      );
+      isProfileDesktop = (
+        <IconButton
+          className={classes.icon}
+          aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+          aria-haspopup="true"
+          onClick={this.handleProfileMenuOpen}
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+      )
+    }
     const renderBurgerMenu = (
       <Menu
         anchorEl={burgerAnchorEL}
@@ -89,8 +123,7 @@ class Header extends Component {
       >
         <MenuItem onClick={this.handleBurgerMenuClose}>О сайте</MenuItem>
         <MenuItem onClick={this.handleBurgerMenuClose}>Настройки</MenuItem>
-        <MenuItem onClick={() => { this.handleAuthModalOpen(); this.handleBurgerMenuClose();}}>Авторизироваться</MenuItem>
-        <MenuItem onClick={() => { this.handleRegModalOpen(); this.handleBurgerMenuClose();}}>Зарегистрироваться</MenuItem>
+        {isLogged}
       </Menu>
     );
 
@@ -104,7 +137,7 @@ class Header extends Component {
       >
         <MenuItem onClick={this.handleMenuClose}>Профиль</MenuItem>
         <MenuItem onClick={this.handleMenuClose}>Мой аккаунт</MenuItem>
-        <MenuItem onClick={() => { this.handleMenuClose; this.logout();}}>Выйти</MenuItem>
+        <MenuItem onClick={() => { this.logout(); this.handleMenuClose();}}>Выйти</MenuItem>
       </Menu>
     );
 
@@ -132,12 +165,7 @@ class Header extends Component {
           </IconButton>
           <p>Оповещания</p>
         </MenuItem>
-        <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Профиль</p>
-        </MenuItem>
+        {isProfileMobile}
       </Menu>
     );
 
@@ -175,15 +203,7 @@ class Header extends Component {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                className={classes.icon}
-                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              {isProfileDesktop}
             </div>
             <div className={classes.sectionMobile}>
               <IconButton className={classes.icon} aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
@@ -217,5 +237,11 @@ class Header extends Component {
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(Header);
+const mapStateToProps = ({ isAuth }) => {
+  return { isAuth };
+}
+const mapDispatchToProps  = {
+  accountAuth,
+  accountAuthLogout
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Header));

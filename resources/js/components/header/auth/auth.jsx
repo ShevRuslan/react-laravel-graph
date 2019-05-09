@@ -21,9 +21,6 @@ class AutorizationForm extends Component {
         repeatPassword: '',
         showPassword: false,
     };
-    componentDidUpdate = () => {
-        console.log(this.props)
-    }
     handleChange = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
@@ -42,6 +39,7 @@ class AutorizationForm extends Component {
         if (response.data.auth_token !== undefined) {
             this.props.accountAuth(response.data.auth_token)
             localStorage.setItem('auth_token', response.data.auth_token);
+            
         } else {
             this.props.accountAuthError('Ошибка в авторизации');
         }
@@ -103,8 +101,8 @@ class AutorizationForm extends Component {
 AutorizationForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-const mapStateToProps  = ({isAuth, auth_token, auth_error}) => {
-    return {isAuth, auth_token, auth_error}
+const mapStateToProps  = ({isAuth, auth_error}) => {
+    return { isAuth, auth_error };
 }
 const mapDispatchToProps  = {
     accountAuth,

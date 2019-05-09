@@ -91764,23 +91764,28 @@ module.exports = function(module) {
 /*!***************************************!*\
   !*** ./resources/js/actions/index.js ***!
   \***************************************/
-/*! exports provided: accountAuth, accountAuthError */
+/*! exports provided: accountAuth, accountAuthError, accountAuthLogout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accountAuth", function() { return accountAuth; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accountAuthError", function() { return accountAuthError; });
-var accountAuth = function accountAuth(auth_token) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accountAuthLogout", function() { return accountAuthLogout; });
+var accountAuth = function accountAuth() {
   return {
-    type: 'FETCH_ACCOUNT_AUTH_SUCCESS',
-    auth_token: auth_token
+    type: 'FETCH_ACCOUNT_AUTH_SUCCESS'
   };
 };
 var accountAuthError = function accountAuthError(error) {
   return {
     type: 'FETCH_ACCOUNT_AUTH_ERROR',
     error: error
+  };
+};
+var accountAuthLogout = function accountAuthLogout() {
+  return {
+    type: 'FETCH_ACCOUNT_AUTH_LOGOUT'
   };
 };
 
@@ -92032,10 +92037,6 @@ function (_Component) {
       showPassword: false
     });
 
-    _defineProperty(_assertThisInitialized(_this), "componentDidUpdate", function () {
-      console.log(_this.props);
-    });
-
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (prop) {
       return function (event) {
         _this.setState(_defineProperty({}, prop, event.target.value));
@@ -92170,11 +92171,9 @@ AutorizationForm.propTypes = {
 
 var mapStateToProps = function mapStateToProps(_ref2) {
   var isAuth = _ref2.isAuth,
-      auth_token = _ref2.auth_token,
       auth_error = _ref2.auth_error;
   return {
     isAuth: isAuth,
-    auth_token: auth_token,
     auth_error: auth_error
   };
 };
@@ -92283,6 +92282,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./auth */ "./resources/js/components/header/auth/index.js");
 /* harmony import */ var _reg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./reg */ "./resources/js/components/header/reg/index.js");
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./style */ "./resources/js/components/header/style.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_index__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../actions/index */ "./resources/js/actions/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -92302,6 +92303,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -92413,14 +92416,18 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
+      var auth_token = localStorage.getItem('auth_token');
+
+      if (auth_token !== null) {
+        _this.props.accountAuth();
+      }
+    });
+
     _defineProperty(_assertThisInitialized(_this), "logout", function () {
       localStorage.removeItem('auth_token');
 
-      _this.setState(function (state) {
-        return {
-          logout: true
-        };
-      });
+      _this.props.accountAuthLogout();
     });
 
     return _this;
@@ -92437,10 +92444,46 @@ function (_Component) {
           burgerAnchorEL = _this$state.burgerAnchorEL,
           modalAuthOpen = _this$state.modalAuthOpen,
           modalRegOpen = _this$state.modalRegOpen;
-      var classes = this.props.classes;
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          isAuth = _this$props.isAuth;
       var isBurgerMenuOpen = Boolean(burgerAnchorEL);
       var isMenuOpen = Boolean(anchorEl);
       var isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+      var isLogged,
+          isProfileMobile,
+          isProfileDesktop = null;
+      console.log(isAuth);
+
+      if (!isAuth) {
+        isLogged = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          onClick: function onClick() {
+            _this2.handleAuthModalOpen();
+
+            _this2.handleBurgerMenuClose();
+          }
+        }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          onClick: function onClick() {
+            _this2.handleRegModalOpen();
+
+            _this2.handleBurgerMenuClose();
+          }
+        }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"));
+      } else {
+        isProfileMobile = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          onClick: this.handleProfileMenuOpen
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
+          color: "inherit"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_13___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041F\u0440\u043E\u0444\u0438\u043B\u044C"));
+        isProfileDesktop = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
+          className: classes.icon,
+          "aria-owns": isMenuOpen ? 'material-appbar' : undefined,
+          "aria-haspopup": "true",
+          onClick: this.handleProfileMenuOpen,
+          color: "inherit"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_13___default.a, null));
+      }
+
       var renderBurgerMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
         anchorEl: burgerAnchorEL,
         anchorOrigin: {
@@ -92457,19 +92500,7 @@ function (_Component) {
         onClick: this.handleBurgerMenuClose
       }, "\u041E \u0441\u0430\u0439\u0442\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
         onClick: this.handleBurgerMenuClose
-      }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        onClick: function onClick() {
-          _this2.handleAuthModalOpen();
-
-          _this2.handleBurgerMenuClose();
-        }
-      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        onClick: function onClick() {
-          _this2.handleRegModalOpen();
-
-          _this2.handleBurgerMenuClose();
-        }
-      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"));
+      }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), isLogged);
       var renderProfileMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
         anchorEl: anchorEl,
         anchorOrigin: {
@@ -92488,9 +92519,9 @@ function (_Component) {
         onClick: this.handleMenuClose
       }, "\u041C\u043E\u0439 \u0430\u043A\u043A\u0430\u0443\u043D\u0442"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
         onClick: function onClick() {
-          _this2.handleMenuClose;
-
           _this2.logout();
+
+          _this2.handleMenuClose();
         }
       }, "\u0412\u044B\u0439\u0442\u0438"));
       var renderMobileMenu = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9___default.a, {
@@ -92519,11 +92550,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Badge__WEBPACK_IMPORTED_MODULE_7___default.a, {
         badgeContent: 11,
         color: "secondary"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u043F\u043E\u0432\u0435\u0449\u0430\u043D\u0438\u044F")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        onClick: this.handleProfileMenuOpen
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
-        color: "inherit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_13___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041F\u0440\u043E\u0444\u0438\u043B\u044C")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u043F\u043E\u0432\u0435\u0449\u0430\u043D\u0438\u044F")), isProfileMobile);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.root
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -92564,13 +92591,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Badge__WEBPACK_IMPORTED_MODULE_7___default.a, {
         badgeContent: 1,
         color: "secondary"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_15___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
-        className: classes.icon,
-        "aria-owns": isMenuOpen ? 'material-appbar' : undefined,
-        "aria-haspopup": "true",
-        onClick: this.handleProfileMenuOpen,
-        color: "inherit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_13___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Notifications__WEBPACK_IMPORTED_MODULE_15___default.a, null))), isProfileDesktop), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.sectionMobile
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4___default.a, {
         className: classes.icon,
@@ -92593,7 +92614,19 @@ function (_Component) {
 Header.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired
 };
-/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_10__["withStyles"])(_style__WEBPACK_IMPORTED_MODULE_20__["default"])(Header));
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var isAuth = _ref.isAuth;
+  return {
+    isAuth: isAuth
+  };
+};
+
+var mapDispatchToProps = {
+  accountAuth: _actions_index__WEBPACK_IMPORTED_MODULE_22__["accountAuth"],
+  accountAuthLogout: _actions_index__WEBPACK_IMPORTED_MODULE_22__["accountAuthLogout"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_21__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_10__["withStyles"])(_style__WEBPACK_IMPORTED_MODULE_20__["default"])(Header)));
 
 /***/ }),
 
@@ -93193,7 +93226,6 @@ var reducer = function reducer(state, action) {
   if (state === undefined) {
     return {
       isAuth: false,
-      auth_token: '',
       auth_error: ''
     };
   }
@@ -93204,15 +93236,19 @@ var reducer = function reducer(state, action) {
     case 'FETCH_ACCOUNT_AUTH_SUCCESS':
       return {
         isAuth: true,
-        auth_token: action.auth_token,
         auth_error: ''
       };
 
     case 'FETCH_ACCOUNT_AUTH_ERROR':
       return {
         isAuth: false,
-        auth_token: '',
         auth_error: action.error
+      };
+
+    case 'FETCH_ACCOUNT_AUTH_LOGOUT':
+      return {
+        isAuth: false,
+        auth_error: ''
       };
 
     default:
