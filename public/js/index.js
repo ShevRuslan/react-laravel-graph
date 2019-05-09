@@ -92051,25 +92051,55 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "validate", function (_ref) {
+      var login = _ref.login,
+          password = _ref.password,
+          repeatPassword = _ref.repeatPassword;
+
+      if (login.trim() === '' || password.trim() === '' || repeatPassword.trim() === '') {
+        _this.props.accountAuthError('Поля должны содержать данные!');
+
+        return false;
+      } else if (password.trim() !== repeatPassword.trim() && (login.trim() !== '' || password.trim() !== '' || repeatPassword.trim() !== '')) {
+        _this.props.accountAuthError('Пароли не совпадают.');
+
+        return false;
+      } else {
+        return true;
+      }
+    });
+
     _defineProperty(_assertThisInitialized(_this), "submit",
     /*#__PURE__*/
     function () {
-      var _ref = _asyncToGenerator(
+      var _ref2 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-        var formData, response;
+        var _this$state, login, password, repeatPassword, formData, response;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 e.preventDefault();
+                _this$state = _this.state, login = _this$state.login, password = _this$state.password, repeatPassword = _this$state.repeatPassword;
+
+                if (!_this.validate({
+                  login: login,
+                  password: password,
+                  repeatPassword: repeatPassword
+                })) {
+                  _context.next = 10;
+                  break;
+                }
+
                 formData = new FormData();
-                formData.append('email', _this.state.login);
-                formData.append('password', _this.state.password);
-                _context.next = 6;
+                formData.append('email', login);
+                formData.append('password', password);
+                _context.next = 8;
                 return _this.ghapiService.authUser(formData);
 
-              case 6:
+              case 8:
                 response = _context.sent;
 
                 if (response.data.auth_token !== undefined) {
@@ -92077,10 +92107,10 @@ function (_Component) {
 
                   localStorage.setItem('auth_token', response.data.auth_token);
                 } else {
-                  _this.props.accountAuthError('Ошибка в авторизации');
+                  _this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
                 }
 
-              case 8:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -92089,7 +92119,7 @@ function (_Component) {
       }));
 
       return function (_x) {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }());
 
@@ -92103,11 +92133,11 @@ function (_Component) {
           classes = _this$props.classes,
           auth_error = _this$props.auth_error,
           isAuth = _this$props.isAuth;
-      var _this$state = this.state,
-          login = _this$state.login,
-          password = _this$state.password,
-          repeatPassword = _this$state.repeatPassword,
-          showPassword = _this$state.showPassword;
+      var _this$state2 = this.state,
+          login = _this$state2.login,
+          password = _this$state2.password,
+          repeatPassword = _this$state2.repeatPassword,
+          showPassword = _this$state2.showPassword;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.submit
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -92169,9 +92199,9 @@ AutorizationForm.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object.isRequired
 };
 
-var mapStateToProps = function mapStateToProps(_ref2) {
-  var isAuth = _ref2.isAuth,
-      auth_error = _ref2.auth_error;
+var mapStateToProps = function mapStateToProps(_ref3) {
+  var isAuth = _ref3.isAuth,
+      auth_error = _ref3.auth_error;
   return {
     isAuth: isAuth,
     auth_error: auth_error
