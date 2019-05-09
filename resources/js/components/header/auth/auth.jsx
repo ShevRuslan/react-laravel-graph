@@ -41,22 +41,25 @@ class AutorizationForm extends Component {
             return true;
         }
     }
-    submit = async (e) => {
+    auth = async ({ login, password, repeatPassword }) => {
+        let formData = new FormData();
+        formData.append('email', login);
+        formData.append('password', password);
+
+        const response = await this.ghapiService.authUser(formData);
+        if (response.data.auth_token !== undefined) {
+            this.props.accountAuth(response.data.auth_token)
+            localStorage.setItem('auth_token', response.data.auth_token);
+            
+        } else {
+            this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
+        }
+    }
+    submit = (e) => {
         e.preventDefault();
         const { login, password, repeatPassword } = this.state;
-        if (this.validate({ login, password, repeatPassword })) {
-            let formData = new FormData();
-            formData.append('email', login);
-            formData.append('password', password);
-
-            const response = await this.ghapiService.authUser(formData);
-            if (response.data.auth_token !== undefined) {
-                this.props.accountAuth(response.data.auth_token)
-                localStorage.setItem('auth_token', response.data.auth_token);
-                
-            } else {
-                this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
-            }
+        if (validate({ login, password, repeatPassword })) {
+            this.auth({ login, password, repeatPassword });
         }
     }
     render() {

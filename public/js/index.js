@@ -92069,37 +92069,25 @@ function (_Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "submit",
+    _defineProperty(_assertThisInitialized(_this), "auth",
     /*#__PURE__*/
     function () {
-      var _ref2 = _asyncToGenerator(
+      var _ref3 = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-        var _this$state, login, password, repeatPassword, formData, response;
-
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref2) {
+        var login, password, repeatPassword, formData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                e.preventDefault();
-                _this$state = _this.state, login = _this$state.login, password = _this$state.password, repeatPassword = _this$state.repeatPassword;
-
-                if (!_this.validate({
-                  login: login,
-                  password: password,
-                  repeatPassword: repeatPassword
-                })) {
-                  _context.next = 10;
-                  break;
-                }
-
+                login = _ref2.login, password = _ref2.password, repeatPassword = _ref2.repeatPassword;
                 formData = new FormData();
                 formData.append('email', login);
                 formData.append('password', password);
-                _context.next = 8;
+                _context.next = 6;
                 return _this.ghapiService.authUser(formData);
 
-              case 8:
+              case 6:
                 response = _context.sent;
 
                 if (response.data.auth_token !== undefined) {
@@ -92110,7 +92098,7 @@ function (_Component) {
                   _this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
                 }
 
-              case 10:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -92119,9 +92107,29 @@ function (_Component) {
       }));
 
       return function (_x) {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }());
+
+    _defineProperty(_assertThisInitialized(_this), "submit", function (e) {
+      e.preventDefault();
+      var _this$state = _this.state,
+          login = _this$state.login,
+          password = _this$state.password,
+          repeatPassword = _this$state.repeatPassword;
+
+      if (validate({
+        login: login,
+        password: password,
+        repeatPassword: repeatPassword
+      })) {
+        _this.auth({
+          login: login,
+          password: password,
+          repeatPassword: repeatPassword
+        });
+      }
+    });
 
     return _this;
   }
@@ -92199,9 +92207,9 @@ AutorizationForm.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object.isRequired
 };
 
-var mapStateToProps = function mapStateToProps(_ref3) {
-  var isAuth = _ref3.isAuth,
-      auth_error = _ref3.auth_error;
+var mapStateToProps = function mapStateToProps(_ref4) {
+  var isAuth = _ref4.isAuth,
+      auth_error = _ref4.auth_error;
   return {
     isAuth: isAuth,
     auth_error: auth_error
