@@ -10,8 +10,11 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import styles from './style';
-
+import {  connect  } from 'react-redux';
+import {  accountReg, accountRegError  } from '../../../actions/index'
+import GhapiService from '../../../services/api-service';
 class RegistrationForm extends Component {
+    ghapiService = new GhapiService();
     state = {
         login: '',
         email: '',
@@ -26,23 +29,42 @@ class RegistrationForm extends Component {
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
+    validate = ({ login, email, password, repeatPassword }) => {
+        if (login.trim() === '' || password.trim() === '' || repeatPassword.trim() === '' || email.trim() === '') {
+            this.props.accountRegError('Поля должны содержать данные!');
+            return false;
+        }
+        else if (password.trim() !== repeatPassword.trim() && (login.trim() !== '' || password.trim() !== '' || repeatPassword.trim() !== '' || email.trim() !== '') ) {
+            this.props.accountRegError('Пароли не совпадают.');
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    reg = async ({ login, email, password }) => {
+        let formData = new FormData();
+        formData.append('email', email);
+        formData.append('name', login);
+        formData.append('password', password);
+        const response = await this.ghapiService.regUser(formData);
+        if (response.data.auth_token !== undefined) {
+            this.props.accountReg();
+            localStorage.setItem('auth_token', response.data.auth_token);
+        }
+        else {
+            this.props.accountRegError('Невозможно зарегистрировать аккаунт.');
+        }
+    }
     submitForm = (e) => {
         e.preventDefault();
-        let formData = new FormData();
-        formData.append('email', this.state.email);
-        formData.append('name', this.state.login);
-        formData.append('password', this.state.password);
-
-        fetch("api/user/register", {
-            body: formData,
-            method: "POST",
-        })
-            .then(response => console.log(response))
-            .then(json => console.log(json))
-            .catch (error => console.log(error));
+        const { login, email, password, repeatPassword } = this.state;
+        if (this.validate({ login, email, password, repeatPassword })) {
+            this.reg({ login, email, password });
+        }
     }
     render() {
-        const { classes } = this.props;
+        const { classes, reg_error } = this.props;
         const { login, password, repeatPassword, showPassword, email } = this.state;
         return (
             <form onSubmit={this.submitForm}>
@@ -97,6 +119,7 @@ class RegistrationForm extends Component {
                 <Button type="submit" variant="outlined" color="primary" className={classNames(classes.button, classes.textField)}>
                     Зарегистрироваться
                 </Button>
+                <div style={{color: 'red', textAlign: 'center', width: '100%',fontFamily: "Roboto"}}>{ reg_error }</div>
             </form>
         );
     }
@@ -105,5 +128,11 @@ class RegistrationForm extends Component {
 RegistrationForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-  
-export default withStyles(styles)(RegistrationForm);
+const mapStateToProps = ({ reg_error }) => {
+    return { reg_error };
+}  
+const mapDispatchToProps = {
+    accountReg,
+    accountRegError
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RegistrationForm));
