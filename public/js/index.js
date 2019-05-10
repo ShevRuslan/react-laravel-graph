@@ -91953,34 +91953,167 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/Typography/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/IconButton/index.js");
+/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/InputAdornment */ "./node_modules/@material-ui/core/InputAdornment/index.js");
+/* harmony import */ var _material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/TextField/index.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/Visibility */ "./node_modules/@material-ui/icons/Visibility.js");
+/* harmony import */ var _material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/VisibilityOff */ "./node_modules/@material-ui/icons/VisibilityOff.js");
+/* harmony import */ var _material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/Button/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./style */ "./resources/js/components/header/auth/style.js");
+/* harmony import */ var _hoc_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./hoc-auth */ "./resources/js/components/header/auth/hoc-auth.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AutorizationForm =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AutorizationForm, _Component);
+
+  function AutorizationForm() {
+    _classCallCheck(this, AutorizationForm);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AutorizationForm).apply(this, arguments));
+  }
+
+  _createClass(AutorizationForm, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          auth_error = _this$props.auth_error,
+          submit = _this$props.submit,
+          handleChange = _this$props.handleChange,
+          handleClickShowPassword = _this$props.handleClickShowPassword,
+          login = _this$props.login,
+          password = _this$props.password,
+          repeatPassword = _this$props.repeatPassword,
+          showPassword = _this$props.showPassword;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: submit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        align: "center",
+        variant: "h6",
+        color: "inherit",
+        noWrap: true
+      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        id: "outlined-adornment-login",
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
+        variant: "outlined",
+        label: "\u041F\u043E\u0447\u0442\u0430 \u0438\u043B\u0438 \u043B\u043E\u0433\u0438\u043D",
+        value: login,
+        onChange: handleChange('login')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        id: "outlined-adornment-password",
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
+        variant: "outlined",
+        type: showPassword ? 'text' : 'password',
+        label: "\u041F\u0430\u0440\u043E\u043B\u044C",
+        value: password,
+        onChange: handleChange('password'),
+        InputProps: {
+          endAdornment: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_6___default.a, {
+            position: "end"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5___default.a, {
+            "aria-label": "Toggle password visibility",
+            onClick: handleClickShowPassword
+          }, showPassword ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_9___default.a, null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_8___default.a, null)))
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        id: "outlined-adornment-repeat-password",
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
+        variant: "outlined",
+        type: showPassword ? 'text' : 'password',
+        label: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C",
+        value: repeatPassword,
+        onChange: handleChange('repeatPassword')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10___default.a, {
+        type: "submit",
+        variant: "outlined",
+        color: "primary",
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.button, classes.textField)
+      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          color: 'red',
+          textAlign: 'center',
+          width: '100%',
+          fontFamily: "Roboto"
+        }
+      }, auth_error));
+    }
+  }]);
+
+  return AutorizationForm;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+AutorizationForm.propTypes = {
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(_hoc_auth__WEBPACK_IMPORTED_MODULE_12__["default"])(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__["withStyles"])(_style__WEBPACK_IMPORTED_MODULE_11__["default"])(AutorizationForm)));
+
+/***/ }),
+
+/***/ "./resources/js/components/header/auth/hoc-auth.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/header/auth/hoc-auth.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/Typography/index.js");
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/IconButton/index.js");
-/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/InputAdornment */ "./node_modules/@material-ui/core/InputAdornment/index.js");
-/* harmony import */ var _material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/TextField/index.js");
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/Visibility */ "./node_modules/@material-ui/icons/Visibility.js");
-/* harmony import */ var _material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/icons/VisibilityOff */ "./node_modules/@material-ui/icons/VisibilityOff.js");
-/* harmony import */ var _material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/Button/index.js");
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./style */ "./resources/js/components/header/auth/style.js");
-/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../services/api-service */ "./resources/js/services/api-service.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../actions/index */ "./resources/js/actions/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/api-service */ "./resources/js/services/api-service.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/index */ "./resources/js/actions/index.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -92013,227 +92146,175 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var hocAuth = function hocAuth(View) {
+  var _temp;
 
+  return _temp =
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(_temp, _Component);
 
+    function _temp() {
+      var _getPrototypeOf2;
 
+      var _this;
 
+      _classCallCheck(this, _temp);
 
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(_temp)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+      _defineProperty(_assertThisInitialized(_this), "ghapiService", new _services_api_service__WEBPACK_IMPORTED_MODULE_3__["default"]());
 
+      _defineProperty(_assertThisInitialized(_this), "state", {
+        login: '',
+        password: '',
+        repeatPassword: '',
+        showPassword: false
+      });
 
-
-var AutorizationForm =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(AutorizationForm, _Component);
-
-  function AutorizationForm() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    _classCallCheck(this, AutorizationForm);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AutorizationForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "ghapiService", new _services_api_service__WEBPACK_IMPORTED_MODULE_13__["default"]());
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      login: '',
-      password: '',
-      repeatPassword: '',
-      showPassword: false
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleChange", function (prop) {
-      return function (event) {
-        _this.setState(_defineProperty({}, prop, event.target.value));
-      };
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleClickShowPassword", function () {
-      _this.setState(function (state) {
-        return {
-          showPassword: !state.showPassword
+      _defineProperty(_assertThisInitialized(_this), "handleChange", function (prop) {
+        return function (event) {
+          _this.setState(_defineProperty({}, prop, event.target.value));
         };
       });
-    });
 
-    _defineProperty(_assertThisInitialized(_this), "validate", function (_ref) {
-      var login = _ref.login,
-          password = _ref.password,
-          repeatPassword = _ref.repeatPassword;
+      _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
+        console.log(_this.props);
+      });
 
-      if (login.trim() === '' || password.trim() === '' || repeatPassword.trim() === '') {
-        _this.props.accountAuthError('Поля должны содержать данные!');
+      _defineProperty(_assertThisInitialized(_this), "handleClickShowPassword", function () {
+        _this.setState(function (state) {
+          return {
+            showPassword: !state.showPassword
+          };
+        });
+      });
 
-        return false;
-      } else if (password.trim() !== repeatPassword.trim() && (login.trim() !== '' || password.trim() !== '' || repeatPassword.trim() !== '')) {
-        _this.props.accountAuthError('Пароли не совпадают.');
+      _defineProperty(_assertThisInitialized(_this), "validate", function (_ref) {
+        var login = _ref.login,
+            password = _ref.password,
+            repeatPassword = _ref.repeatPassword;
 
-        return false;
-      } else {
-        return true;
-      }
-    });
+        if (login.trim() === '' || password.trim() === '' || repeatPassword.trim() === '') {
+          _this.props.accountAuthError('Поля должны содержать данные!');
 
-    _defineProperty(_assertThisInitialized(_this), "auth",
-    /*#__PURE__*/
-    function () {
-      var _ref3 = _asyncToGenerator(
+          return false;
+        } else if (password.trim() !== repeatPassword.trim() && (login.trim() !== '' || password.trim() !== '' || repeatPassword.trim() !== '')) {
+          _this.props.accountAuthError('Пароли не совпадают.');
+
+          return false;
+        } else {
+          return true;
+        }
+      });
+
+      _defineProperty(_assertThisInitialized(_this), "auth",
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref2) {
-        var login, password, repeatPassword, formData, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                login = _ref2.login, password = _ref2.password, repeatPassword = _ref2.repeatPassword;
-                formData = new FormData();
-                formData.append('email', login);
-                formData.append('password', password);
-                _context.next = 6;
-                return _this.ghapiService.authUser(formData);
+      function () {
+        var _ref3 = _asyncToGenerator(
+        /*#__PURE__*/
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref2) {
+          var login, password, formData, response;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  login = _ref2.login, password = _ref2.password;
+                  formData = new FormData();
+                  formData.append('email', login);
+                  formData.append('password', password);
+                  _context.next = 6;
+                  return _this.ghapiService.authUser(formData);
 
-              case 6:
-                response = _context.sent;
+                case 6:
+                  response = _context.sent;
 
-                if (response.data.auth_token !== undefined) {
-                  _this.props.accountAuth(response.data.auth_token);
+                  if (response.data.auth_token !== undefined) {
+                    _this.props.accountAuth();
 
-                  localStorage.setItem('auth_token', response.data.auth_token);
-                } else {
-                  _this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
-                }
+                    localStorage.setItem('auth_token', response.data.auth_token);
+                  } else {
+                    _this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
+                  }
 
-              case 8:
-              case "end":
-                return _context.stop();
+                case 8:
+                case "end":
+                  return _context.stop();
+              }
             }
-          }
-        }, _callee);
-      }));
+          }, _callee);
+        }));
 
-      return function (_x) {
-        return _ref3.apply(this, arguments);
-      };
-    }());
+        return function (_x) {
+          return _ref3.apply(this, arguments);
+        };
+      }());
 
-    _defineProperty(_assertThisInitialized(_this), "submit", function (e) {
-      e.preventDefault();
-      var _this$state = _this.state,
-          login = _this$state.login,
-          password = _this$state.password,
-          repeatPassword = _this$state.repeatPassword;
+      _defineProperty(_assertThisInitialized(_this), "submit", function (e) {
+        e.preventDefault();
+        var _this$state = _this.state,
+            login = _this$state.login,
+            password = _this$state.password,
+            repeatPassword = _this$state.repeatPassword;
 
-      if (validate({
-        login: login,
-        password: password,
-        repeatPassword: repeatPassword
-      })) {
-        _this.auth({
+        if (_this.validate({
           login: login,
           password: password,
           repeatPassword: repeatPassword
+        })) {
+          _this.auth({
+            login: login,
+            password: password,
+            repeatPassword: repeatPassword
+          });
+        }
+      });
+
+      return _this;
+    }
+
+    _createClass(_temp, [{
+      key: "render",
+      value: function render() {
+        var auth_error = this.props.auth_error;
+        var _this$state2 = this.state,
+            login = _this$state2.login,
+            password = _this$state2.password,
+            repeatPassword = _this$state2.repeatPassword,
+            showPassword = _this$state2.showPassword;
+        return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(View, {
+          auth_error: auth_error,
+          submit: this.submit,
+          handleChange: this.handleChange,
+          handleClickShowPassword: this.handleClickShowPassword,
+          login: login,
+          password: password,
+          repeatPassword: repeatPassword,
+          showPassword: showPassword
         });
       }
-    });
+    }]);
 
-    return _this;
-  }
-
-  _createClass(AutorizationForm, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          classes = _this$props.classes,
-          auth_error = _this$props.auth_error,
-          isAuth = _this$props.isAuth;
-      var _this$state2 = this.state,
-          login = _this$state2.login,
-          password = _this$state2.password,
-          repeatPassword = _this$state2.repeatPassword,
-          showPassword = _this$state2.showPassword;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-        onSubmit: this.submit
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        align: "center",
-        variant: "h6",
-        color: "inherit",
-        noWrap: true
-      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        id: "outlined-adornment-login",
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.margin, classes.textField),
-        variant: "outlined",
-        label: "\u041F\u043E\u0447\u0442\u0430 \u0438\u043B\u0438 \u043B\u043E\u0433\u0438\u043D",
-        value: login,
-        onChange: this.handleChange('login')
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        id: "outlined-adornment-password",
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.margin, classes.textField),
-        variant: "outlined",
-        type: showPassword ? 'text' : 'password',
-        label: "\u041F\u0430\u0440\u043E\u043B\u044C",
-        value: password,
-        onChange: this.handleChange('password'),
-        InputProps: {
-          endAdornment: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_7___default.a, {
-            position: "end"
-          }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_6___default.a, {
-            "aria-label": "Toggle password visibility",
-            onClick: this.handleClickShowPassword
-          }, showPassword ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_10___default.a, null) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_9___default.a, null)))
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        id: "outlined-adornment-repeat-password",
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.margin, classes.textField),
-        variant: "outlined",
-        type: showPassword ? 'text' : 'password',
-        label: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C",
-        value: repeatPassword,
-        onChange: this.handleChange('repeatPassword')
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11___default.a, {
-        type: "submit",
-        variant: "outlined",
-        color: "primary",
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.button, classes.textField)
-      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        style: {
-          color: 'red',
-          textAlign: 'center',
-          width: '100%',
-          fontFamily: "Roboto"
-        }
-      }, auth_error));
-    }
-  }]);
-
-  return AutorizationForm;
-}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
-
-AutorizationForm.propTypes = {
-  classes: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object.isRequired
+    return _temp;
+  }(react__WEBPACK_IMPORTED_MODULE_2__["Component"]), _temp;
 };
 
 var mapStateToProps = function mapStateToProps(_ref4) {
-  var isAuth = _ref4.isAuth,
-      auth_error = _ref4.auth_error;
+  var auth_error = _ref4.auth_error;
   return {
-    isAuth: isAuth,
     auth_error: auth_error
   };
 };
 
 var mapDispatchToProps = {
-  accountAuth: _actions_index__WEBPACK_IMPORTED_MODULE_15__["accountAuth"],
-  accountAuthError: _actions_index__WEBPACK_IMPORTED_MODULE_15__["accountAuthError"]
+  accountAuth: _actions_index__WEBPACK_IMPORTED_MODULE_5__["accountAuth"],
+  accountAuthError: _actions_index__WEBPACK_IMPORTED_MODULE_5__["accountAuthError"]
 };
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_14__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["withStyles"])(_style__WEBPACK_IMPORTED_MODULE_12__["default"])(AutorizationForm)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_1__["compose"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps), hocAuth));
 
 /***/ }),
 
@@ -93415,7 +93496,7 @@ var reducer = function reducer(state, action) {
 
     case 'FETCH_ACCOUNT_REG_ERROR':
       return _objectSpread({}, state, {
-        isAuth: true,
+        isAuth: false,
         reg_error: action.error
       });
 

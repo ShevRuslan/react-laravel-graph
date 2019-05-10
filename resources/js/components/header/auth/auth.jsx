@@ -10,72 +10,20 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import styles from './style';
-import GhapiService from '../../../services/api-service';
-import {  connect  } from 'react-redux';
-import {  accountAuth, accountAuthError  } from '../../../actions/index'
-class AutorizationForm extends Component {
-    ghapiService = new GhapiService();
-    state = {
-        login: '',
-        password: '',
-        repeatPassword: '',
-        showPassword: false,
-    };
-    handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-    };
-    
-    handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
-    };
-    validate = ({ login, password, repeatPassword }) => {
-        if (login.trim() === '' || password.trim() === '' || repeatPassword.trim() === '') {
-            this.props.accountAuthError('Поля должны содержать данные!');
-            return false;
-        }
-        else if (password.trim() !== repeatPassword.trim() && (login.trim() !== '' || password.trim() !== '' || repeatPassword.trim() !== '') ) {
-            this.props.accountAuthError('Пароли не совпадают.');
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    auth = async ({ login, password, repeatPassword }) => {
-        let formData = new FormData();
-        formData.append('email', login);
-        formData.append('password', password);
-
-        const response = await this.ghapiService.authUser(formData);
-        if (response.data.auth_token !== undefined) {
-            this.props.accountAuth(response.data.auth_token)
-            localStorage.setItem('auth_token', response.data.auth_token);
-            
-        } else {
-            this.props.accountAuthError('Аккаунт не найден. Проверьте введённые данные.');
-        }
-    }
-    submit = (e) => {
-        e.preventDefault();
-        const { login, password, repeatPassword } = this.state;
-        if (validate({ login, password, repeatPassword })) {
-            this.auth({ login, password, repeatPassword });
-        }
-    }
+import hocAuth from './hoc-auth';
+class AutorizationForm extends Component { 
     render() {
-        const { classes, auth_error, isAuth } = this.props;
-        const { login, password, repeatPassword, showPassword} = this.state; 
+        const { classes, auth_error, submit, handleChange, handleClickShowPassword, login, password, repeatPassword, showPassword } = this.props;
         return (
-            <form onSubmit={this.submit}>
+            <form onSubmit={submit}>
                 <Typography align="center" variant="h6" color="inherit" noWrap>Авторизация</Typography>
-            
                 <TextField
                 id="outlined-adornment-login"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Почта или логин"
                 value={login}
-                onChange={this.handleChange('login')}
+                onChange={handleChange('login')}
                 />
                 <TextField
                 id="outlined-adornment-password"
@@ -84,13 +32,13 @@ class AutorizationForm extends Component {
                 type={showPassword ? 'text' : 'password'}
                 label="Пароль"
                 value={password}
-                onChange={this.handleChange('password')}
+                onChange={handleChange('password')}
                 InputProps={{
                     endAdornment: (
                     <InputAdornment position="end">
                         <IconButton
                         aria-label="Toggle password visibility"
-                        onClick={this.handleClickShowPassword}
+                        onClick={handleClickShowPassword}
                         >
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
@@ -105,7 +53,7 @@ class AutorizationForm extends Component {
                 type={showPassword ? 'text' : 'password'}
                 label="Повторите пароль"
                 value={repeatPassword}
-                onChange={this.handleChange('repeatPassword')}
+                onChange={handleChange('repeatPassword')}
                 />
                 <Button type="submit" variant="outlined" color="primary" className={classNames(classes.button, classes.textField)}>
                     Авторизироваться
@@ -119,11 +67,4 @@ class AutorizationForm extends Component {
 AutorizationForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-const mapStateToProps  = ({isAuth, auth_error}) => {
-    return { isAuth, auth_error };
-}
-const mapDispatchToProps  = {
-    accountAuth,
-    accountAuthError
-}  
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AutorizationForm));
+export default hocAuth(withStyles(styles)(AutorizationForm));

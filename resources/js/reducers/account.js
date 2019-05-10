@@ -32,7 +32,7 @@ const reducer = (state, action) => {
         case 'FETCH_ACCOUNT_REG_ERROR':
             return {
                 ...state,
-                isAuth: true,
+                isAuth: false,
                 reg_error: action.error,
             }
         default:
