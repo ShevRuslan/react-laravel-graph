@@ -91977,23 +91977,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./style */ "./resources/js/components/header/auth/style.js");
 /* harmony import */ var _hoc_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./hoc-auth */ "./resources/js/components/header/auth/hoc-auth.jsx");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
@@ -92008,87 +91991,68 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-var AutorizationForm =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(AutorizationForm, _Component);
-
-  function AutorizationForm() {
-    _classCallCheck(this, AutorizationForm);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(AutorizationForm).apply(this, arguments));
-  }
-
-  _createClass(AutorizationForm, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          classes = _this$props.classes,
-          auth_error = _this$props.auth_error,
-          submit = _this$props.submit,
-          handleChange = _this$props.handleChange,
-          handleClickShowPassword = _this$props.handleClickShowPassword,
-          login = _this$props.login,
-          password = _this$props.password,
-          repeatPassword = _this$props.repeatPassword,
-          showPassword = _this$props.showPassword;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: submit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        align: "center",
-        variant: "h6",
-        color: "inherit",
-        noWrap: true
-      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
-        id: "outlined-adornment-login",
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
-        variant: "outlined",
-        label: "\u041F\u043E\u0447\u0442\u0430 \u0438\u043B\u0438 \u043B\u043E\u0433\u0438\u043D",
-        value: login,
-        onChange: handleChange('login')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
-        id: "outlined-adornment-password",
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
-        variant: "outlined",
-        type: showPassword ? 'text' : 'password',
-        label: "\u041F\u0430\u0440\u043E\u043B\u044C",
-        value: password,
-        onChange: handleChange('password'),
-        InputProps: {
-          endAdornment: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_6___default.a, {
-            position: "end"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5___default.a, {
-            "aria-label": "Toggle password visibility",
-            onClick: handleClickShowPassword
-          }, showPassword ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_9___default.a, null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_8___default.a, null)))
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
-        id: "outlined-adornment-repeat-password",
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
-        variant: "outlined",
-        type: showPassword ? 'text' : 'password',
-        label: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C",
-        value: repeatPassword,
-        onChange: handleChange('repeatPassword')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10___default.a, {
-        type: "submit",
-        variant: "outlined",
-        color: "primary",
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.button, classes.textField)
-      }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          color: 'red',
-          textAlign: 'center',
-          width: '100%',
-          fontFamily: "Roboto"
-        }
-      }, auth_error));
+var AutorizationForm = function AutorizationForm(_ref) {
+  var classes = _ref.classes,
+      auth_error = _ref.auth_error,
+      submit = _ref.submit,
+      handleChange = _ref.handleChange,
+      handleClickShowPassword = _ref.handleClickShowPassword,
+      login = _ref.login,
+      password = _ref.password,
+      repeatPassword = _ref.repeatPassword,
+      showPassword = _ref.showPassword;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: submit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    align: "center",
+    variant: "h6",
+    color: "inherit",
+    noWrap: true
+  }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    id: "outlined-adornment-login",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
+    variant: "outlined",
+    label: "\u041F\u043E\u0447\u0442\u0430 \u0438\u043B\u0438 \u043B\u043E\u0433\u0438\u043D",
+    value: login,
+    onChange: handleChange('login')
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    id: "outlined-adornment-password",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
+    variant: "outlined",
+    type: showPassword ? 'text' : 'password',
+    label: "\u041F\u0430\u0440\u043E\u043B\u044C",
+    value: password,
+    onChange: handleChange('password'),
+    InputProps: {
+      endAdornment: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputAdornment__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        position: "end"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5___default.a, {
+        "aria-label": "Toggle password visibility",
+        onClick: handleClickShowPassword
+      }, showPassword ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_VisibilityOff__WEBPACK_IMPORTED_MODULE_9___default.a, null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Visibility__WEBPACK_IMPORTED_MODULE_8___default.a, null)))
     }
-  }]);
-
-  return AutorizationForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    id: "outlined-adornment-repeat-password",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.margin, classes.textField),
+    variant: "outlined",
+    type: showPassword ? 'text' : 'password',
+    label: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C",
+    value: repeatPassword,
+    onChange: handleChange('repeatPassword')
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    type: "submit",
+    variant: "outlined",
+    color: "primary",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.button, classes.textField)
+  }, "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      color: 'red',
+      textAlign: 'center',
+      width: '100%',
+      fontFamily: "Roboto"
+    }
+  }, auth_error));
+};
 
 AutorizationForm.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired
