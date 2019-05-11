@@ -1,8 +1,7 @@
-import { compose } from "redux";
-
 import React, { Component } from 'react';
 import GhapiService from '../../../services/api-service';
-import {  connect  } from 'react-redux';
+import { connect } from 'react-redux';
+import { compose } from "redux";
 import { accountAuth, accountAuthError } from '../../../actions/index';
 
 const hocAuth = (View) => {
@@ -17,9 +16,6 @@ const hocAuth = (View) => {
         handleChange = prop => event => {
             this.setState({ [prop]: event.target.value });
         };
-        componentDidMount= () => {
-            console.log(this.props);
-        }
         handleClickShowPassword = () => {
             this.setState(state => ({ showPassword: !state.showPassword }));
         };
@@ -54,7 +50,7 @@ const hocAuth = (View) => {
             e.preventDefault();
             const { login, password, repeatPassword } = this.state;
             if (this.validate({ login, password, repeatPassword })) {
-                this.auth({ login, password, repeatPassword });
+                this.auth({ login, password, repeatPassword }); //TODO: Если авторизация прошла успешно, закрывать модальное окно
             }
         }
         render() {
