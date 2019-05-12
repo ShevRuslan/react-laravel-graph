@@ -1,0 +1,61 @@
+.home-page-wrapper {
+    height: 90vh;
+    color: rgb(46, 66, 88);
+}
+.home-page {
+    padding: 15px;
+}
+.home-title {
+    font-size: 2.7em !important;
+    text-align: center;
+    color: rgb(46, 66, 88) !important;
+    margin-bottom: 30px !important;
+}
+.home-page-wrapper .home-description {
+    font-size: 1.5em;
+    font-weight: 100;
+    line-height: 1.5;
+    text-align: center;
+}
+.home-begin-work {
+    margin-top: 15px !important;
+    padding: 10px 90px !important;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.item-charts {
+    text-align: center;
+}
+.card {
+    height: 500px;
+    text-align: center;
+}
+.question-item {
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+body {
+    padding-bottom: 30px;
+}
+.faq-item {
+    margin-top: 15px !important;
+    width: 100%;
+}
